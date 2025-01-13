@@ -32,8 +32,8 @@ In the same function, the malwares retrieves various APIs. The fun part is that 
 * ![Funny way of obfuscating kernel32 string](Images/2-FunnyWayOfObfuscatingKernel32String.png)
 
 And then place all characters in the right order to make `kernel32.dll`. It then imports it and
-search for LoadLibraryA to load other dlls, by iterating through its export table and comparing the
-strings with a custom made strcmp (since they remade all CRT functions). 
+search for `LoadLibraryA` to load other dlls, by iterating through its export table and comparing the
+strings with a custom made `strcmp` (since they remade all CRT functions). 
 * ![Retrieval of LoadLibrary manually from Kernel32.dll](Images/3-RetrievalOfLoadLibraryManuallyFromKernel32Dll.png)
 
 After that, the following DLLs are resolved:
@@ -46,7 +46,7 @@ After that, the following DLLs are resolved:
 | Iphlpapi.dll | Not used for any function for some unknown reason | 
 * ![Resolving multiple libraries used by malware](Images/4-ResolvingMultipleLibrariesUsedByMalware.png)
 
-All APIs are then imported with the previously seen custom GetProcAddress function.
+All APIs are then imported with the previously seen custom `GetProcAddress` function.
 * ![Manually importing functions from dlls that the malware uses](Images/5-ManuallyImportingFunctionsFromDllsThatMalwareUses.png)
 * ![Manually importing functions from dlls that the malware uses 2](Images/6-ManuallyImportingFunctionsFromDllsThatMalwareUses2.png)
 
@@ -58,8 +58,8 @@ After this initialization process, the malware checks if it runs on XP:
 * ![CheckIfOnWinXP() function](Images/8-TheCheckIfOnWinXPFunc.png)
 
 It needs to perform that checks to locate the correct directory to store the public key and the
-encrypted private key. On higher version of windows it will store everything in /Users/Public and
-on windows xp it will store everything in the windows directory:
+encrypted private key. On higher version of windows it will store everything in `/Users/Public` and
+on Windows XP it will store everything in the Windows directory:
 * ![Locating directory to store keys](Images/9-LocatingDirectoryToStoreKeys.png)
 
 ---
@@ -97,7 +97,7 @@ After doing all this stuff, Hermes reads the previously created `PUBLIC` file an
 
 ---
 ## 4. General Pre-encryption Setup <a name="4-general-pre-encryption-setup"></a>
-Once the cryptographic setup is done, the program decode attackers contact addresses by the same xor algorithm with obfuscated keys as seen before, sleeps for 1 second and proceed to generating the html recovery instructions.
+Once the cryptographic setup is done, the program decode attackers contact addresses by the same XOR algorithm with obfuscated keys as seen before, sleeps for 1 second and proceed to generating the HTML recovery instructions.
 * ![Generation of ransom note](Images/19-GenerationOfRansomNote.png)
 
 It then writes the ransom note to its file:
