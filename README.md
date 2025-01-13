@@ -24,7 +24,7 @@ The table of contents is organized to follow the logical flow of the code, prese
 
 ---
 ## 1. Resolving APIs and decrypting consts <a name="1-resolving-apis-and-decrypting-constants"></a>
-The program begins with the decryption of constant values with xor with an obfuscated key.
+The program begins with the decryption of constant values with XOR with an obfuscated key.
 
 * ![Decryption of Obfuscated Key](Images/1-DecryptionOfObfuscatedKey.png)
 
