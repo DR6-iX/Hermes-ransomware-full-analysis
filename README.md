@@ -28,13 +28,12 @@ The program begins with the decryption of constant values with xor with an obfus
 
 * ![Decryption of Obfuscated Key](Images/1-DecryptionOfObfuscatedKey.png)
 
-In the same function, the malwares retrieves various APIs. The fun part is that for kernel32.dll, developer
-tried to obfuscate the string with the following algorithm:
+In the same function, the malwares retrieves various APIs. The fun part is that for `kernel32.dll`, developer tried to obfuscate the string with the following algorithm:
 * ![Funny way of obfuscating kernel32 string](Images/2-FunnyWayOfObfuscatingKernel32String.png)
 
-And then place all characters in the right order to make “kernel32.dll”. It then imports it and
+And then place all characters in the right order to make `kernel32.dll`. It then imports it and
 search for LoadLibraryA to load other dlls, by iterating through its export table and comparing the
-strings with a custom made strcmp (since they remade all crt functions). 
+strings with a custom made strcmp (since they remade all CRT functions). 
 * ![Retrieval of LoadLibrary manually from Kernel32.dll](Images/3-RetrievalOfLoadLibraryManuallyFromKernel32Dll.png)
 
 After that, the following DLLs are resolved:
@@ -104,14 +103,13 @@ Once the cryptographic setup is done, the program decode attackers contact addre
 It then writes the ransom note to its file:
 * ![Write note to disk](Images/20-WriteNoteToDisk.png)
 
-Hermes encryption scheme is multithreaded: It uses a huge array of wchar_t* (“tasks”) that will
+Hermes encryption scheme is multithreaded: It uses a huge array of wchar_t* (`tasks`) that will
 contains all file paths.
 * ![Array of file paths](Images/21-ArrayOfFilePaths.png)
 
 ---
 ## 5. Scanning for Files <a name="5-scanning-for-files"></a>
-Hermes will scan all connected drives and recursively search for files to encrypts except in CD
-roms
+Hermes will scan all connected drives and recursively search for files to encrypts except in CD ROMs
 * ![Scanning of files except CD-ROM](Images/22-ScanningOfFilesExceptCDRom.png)
 
 It will also enumerates net shares on the local network:
@@ -137,7 +135,8 @@ To encrypt a file it performs the following: Loops while the path list (tasks) i
 ## 6. File Encryption <a name="6-file-encryption"></a>
 Inside the encryption thread we can see the following:
 * ![Encryption thread](Images/30-EncryptionThread.png)
-In this code, the malware encrypts the file and renames it with the the following pattern appended to the original filename: [attack@mail].HRM
+
+In this code, the malware encrypts the file and renames it with the the following pattern appended to the original filename: `[attack@mail].HRM`
 
 The file path are stored in some sort of struct passed as a thread parameter from the recursive function.
 
